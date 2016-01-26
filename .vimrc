@@ -14,6 +14,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'nvie/vim-flake8'
+Plugin 'winmanager'
+Plugin 'taglist.vim'
+Plugin 'jlanzarotta/bufexplorer'
 call vundle#end()            " required
 filetype plugin indent on    " required
 set nu
@@ -93,9 +96,10 @@ let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\
 let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" map <C-n> :NERDTreeToggle<CR>
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeIndicatorMapCustom = {
@@ -117,3 +121,24 @@ let g:flake8_quickfix_location="topleft"
 let g:flake8_quickfix_height=7
 let g:flake8_max_line_length=120
 let g:flake8_ignore=""
+
+let Tlist_Show_One_File=1 
+let Tlist_Exit_OnlyWindow=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Config Winmanager
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:winManagerWindowLayout="NERDTree|BufExplorer|TagList"
+let g:NERDTree_title="[NERDTree]"
+"
+
+let g:winManagerWidth = 30
+"
+function! NERDTree_Start()  
+	exec 'NERDTree'  
+endfunction
+
+function! NERDTree_IsValid()  
+	return 1  
+endfunction
+nmap <silent> <F8> :WMToggle<cr>
