@@ -12,6 +12,7 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'nvie/vim-flake8'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -109,7 +110,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-
+let g:nerdtree_tabs_open_on_console_startup=1
 
 " autocmd BufWritePost *.py call Flake8()
 let g:flake8_quickfix_location="topleft"
