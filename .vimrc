@@ -17,6 +17,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'winmanager'
 Plugin 'taglist.vim'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'rkulla/pydiction'
 call vundle#end()            " required
 filetype plugin indent on    " required
 set nu
@@ -142,3 +143,7 @@ function! NERDTree_IsValid()
 	return 1  
 endfunction
 nmap <silent> <F8> :WMToggle<cr>
+
+let g:pydiction_location="~/.vim/bundle/pydiction/complete-dict"
+let g:pydiction_menu_height = 3
+
