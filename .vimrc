@@ -1,5 +1,4 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off  
 
     " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,13 +17,19 @@ Plugin 'winmanager'
 Plugin 'taglist.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rkulla/pydiction'
+Plugin 'fatih/vim-go'
 call vundle#end()            " required
-filetype plugin indent on    " required
+set nocompatible   
+filetype on 
+syntax on  
+filetype plugin on  
+filetype plugin indent on  
+
 set nu
 set mouse=a
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
+" let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -40,11 +45,11 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 "let g:neocomplcache_enable_underbar_completion = 1
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+"let g:neocomplcache_dictionary_filetype_lists = {
+"    \ 'default' : '',
+"    \ 'vimshell' : $HOME.'/.vimshell_hist',
+"    \ 'scheme' : $HOME.'/.gosh_completions'
+"        \ }
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -53,8 +58,8 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+"inoremap <expr><C-g>     neocomplcache#undo_completion()
+"inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -78,10 +83,11 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
+autocmd FileType go set omnifunc=go#complete#Complete
 
 autocmd FileType * set tabstop=8|set shiftwidth=8|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+" autocmd FileType go set tabstop=4|set shiftwidth=4
 
 
 
@@ -91,6 +97,7 @@ endif
 let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.go = '[^.[:digit:] *\t]\.'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
@@ -157,3 +164,14 @@ function HeaderPython()
 endf
 
 autocmd bufnewfile *.py call HeaderPython()
+let g:go_fmt_autosave = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+"let g:go_term_mode = "split" 
+let g:go_snippet_engine = "neosnippet"
