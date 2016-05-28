@@ -24,7 +24,7 @@ filetype on
 syntax on  
 filetype plugin on  
 filetype plugin indent on  
-
+set backspace=indent,eol,start
 set nu
 set mouse=a
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
