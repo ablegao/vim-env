@@ -143,6 +143,7 @@ let g:NERDTree_title="[NERDTree]"
 let g:winManagerWidth = 30
 "
 function! NERDTree_Start()  
+	exe 'q'
 	exec 'NERDTree'  
 endfunction
 
