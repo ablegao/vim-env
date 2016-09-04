@@ -1,6 +1,6 @@
 filetype off  
 
-    " set the runtime path to include Vundle and initialize
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
@@ -14,7 +14,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'nvie/vim-flake8'
 Plugin 'winmanager'
-Plugin 'taglist.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rkulla/pydiction'
 Plugin 'fatih/vim-go'
@@ -130,26 +130,34 @@ let g:flake8_quickfix_height=7
 let g:flake8_max_line_length=120
 let g:flake8_ignore=""
 
-let Tlist_Show_One_File=1 
-let Tlist_Exit_OnlyWindow=1
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Config Winmanager
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout="NERDTree|BufExplorer|TagList"
+let g:winManagerWindowLayout="NERDTree|BufExplorer|Tagbar"
 let g:NERDTree_title="[NERDTree]"
-"
 
+let g:Tagbar_title = "[Tagbar]"
+let g:tagbar_vertical = 30
 let g:winManagerWidth = 30
-"
+
 function! NERDTree_Start()  
 	exe 'q'
-	exec 'NERDTree'  
+	exe 'NERDTree'  
 endfunction
 
 function! NERDTree_IsValid()  
 	return 1  
 endfunction
+
+function! Tagbar_Start()
+	exe "q"
+	exe 'TagbarOpen'
+endfunction
+	 
+function! Tagbar_IsValid()
+	return 1
+endfunction
+
 nmap <silent> <F8> :WMToggle<cr>
 set pastetoggle=<F7>
 
