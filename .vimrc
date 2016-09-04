@@ -13,7 +13,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'nvie/vim-flake8'
-Plugin 'winmanager'
+"Plugin 'winmanager'
 Plugin 'majutsushi/tagbar'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rkulla/pydiction'
@@ -130,38 +130,6 @@ let g:flake8_quickfix_height=7
 let g:flake8_max_line_length=120
 let g:flake8_ignore=""
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Config Winmanager
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout="NERDTree|BufExplorer|Tagbar"
-let g:NERDTree_title="[NERDTree]"
-
-let g:Tagbar_title = "[Tagbar]"
-let g:tagbar_vertical = 30
-let g:winManagerWidth = 30
-
-function! NERDTree_Start()  
-	exe 'q'
-	exe 'NERDTree'  
-endfunction
-
-function! NERDTree_IsValid()  
-	return 1  
-endfunction
-
-function! Tagbar_Start()
-	exe "q"
-	exe 'TagbarOpen'
-endfunction
-	 
-function! Tagbar_IsValid()
-	return 1
-endfunction
-
-nmap <silent> <F8> :WMToggle<cr>
-set pastetoggle=<F7>
-
-
 
 let g:pydiction_location="~/.vim/bundle/pydiction/complete-dict"
 let g:pydiction_menu_height = 3
@@ -187,3 +155,78 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 "let g:go_term_mode = "split" 
 let g:go_snippet_engine = "neosnippet"
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Config Winmanager
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:winManagerWindowLayout="NERDTree|BufExplorer|Tagbar"
+"let g:winManagerWindowLayout="NERDTree|Tagbar"
+let g:NERDTree_title="[NERDTree]"
+
+let g:tagbar_title = "[Tagbar]"
+let g:tagbar_vertical = 30
+let g:tagbar_autofocus = 1
+let g:tagbar_autoshowtag = 1
+
+
+function! NERDTree_Start()  
+	exe 'q'
+	exe 'NERDTree'  
+endfunction
+
+function! NERDTree_IsValid()  
+	return 1  
+endfunction
+
+function! Tagbar_Start()
+	exe 'q'
+	exe 'TagbarOpen'
+endfunction
+	 
+function! Tagbar_IsValid()
+	return 1
+endfunction
+
+
+
+
+function! ToggleNERDTreeAndTagbar()
+    let w:jumpbacktohere = 1
+
+    " Detect which plugins are open
+    if exists('t:NERDTreeBufName')
+        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
+    else
+        let nerdtree_open = 0
+    endif
+    let tagbar_open = bufwinnr('__Tagbar__') != -1
+
+    " Perform the appropriate action
+    if nerdtree_open && tagbar_open 
+        NERDTreeClose
+        TagbarClose
+    elseif nerdtree_open
+        TagbarOpen
+    elseif tagbar_open
+        NERDTree
+    else
+        NERDTree
+        TagbarOpen
+    endif
+
+    " Jump back to the original window
+    for window in range(1, winnr('$'))
+        execute window . 'wincmd w'
+        if exists('w:jumpbacktohere')
+            unlet w:jumpbacktohere
+            break
+        endif
+    endfor
+endfunction
+nmap <silent> <F8> :call ToggleNERDTreeAndTagbar()<CR>
+
+
+
