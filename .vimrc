@@ -18,6 +18,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rkulla/pydiction'
 Plugin 'fatih/vim-go'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()            " required
 set nocompatible   
 filetype on 
@@ -98,6 +99,9 @@ let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.go = '[^.[:digit:] *\t]\.'
+let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+"let g:neocomplcache_omni_function.python = 'jedi#complete'
+
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
@@ -228,5 +232,4 @@ function! ToggleNERDTreeAndTagbar()
 endfunction
 nmap <silent> <F8> :call ToggleNERDTreeAndTagbar()<CR>
 
-
-
+set tags=tags;/
