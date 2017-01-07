@@ -19,6 +19,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rkulla/pydiction'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'szw/vim-tags'
 call vundle#end()            " required
 set nocompatible   
 filetype on 
