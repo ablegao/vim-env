@@ -91,7 +91,7 @@ autocmd FileType * set tabstop=8|set shiftwidth=8|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 " autocmd FileType go set tabstop=4|set shiftwidth=4
 
-
+autocmd FileType go nmap <C-LeftMouse> :GoDef @/='\V\<'.escape(expand('<cword>'), '\').'\>' <CR>
 
 if !exists('g:neocomplcache_force_omni_patterns')
     let g:neocomplcache_force_omni_patterns = {}
@@ -232,5 +232,4 @@ function! ToggleNERDTreeAndTagbar()
     endfor
 endfunction
 nmap <silent> <F8> :call ToggleNERDTreeAndTagbar()<CR>
-
 set tags=tags;/
