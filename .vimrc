@@ -17,9 +17,9 @@ Plugin 'nvie/vim-flake8'
 Plugin 'majutsushi/tagbar'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'rkulla/pydiction'
+Plugin 'szw/vim-tags'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'szw/vim-tags'
 Plugin 'plasticboy/vim-markdown'
 call vundle#end()            " required
 set nocompatible   
@@ -233,4 +233,33 @@ function! ToggleNERDTreeAndTagbar()
     endfor
 endfunction
 nmap <silent> <F8> :call ToggleNERDTreeAndTagbar()<CR>
+set pastetoggle=<F9>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : ' -sort -silent '
+    \ }
 set tags=tags;/
+
