@@ -1,7 +1,7 @@
 ##INSTALL 
 
 
-git clone http://github.com/ablegao/vimconfig.git
+git clone http://github.com/ablegao/vim-env.git
 
 cd vimconfig 
 
